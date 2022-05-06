@@ -12,14 +12,25 @@ Provides an example of existing code that needs to be unit tested. But there is 
 
 Although this is a very small piece of code, it has a lot of the problems that we find in legacy code. 
 
-Details
+TripService
 -------
 
-If you want to give it a go, the starting point is [TripServiceTest.java][3] and [TripService.java][4]. Try unit testing it following the rule above.
+### Business Rules
+Imagine a social networking website for travelers
+* You need to be logged in to see the content
+* You need to be a friend to see someone else's trips
+* If you are not logged in, the code throws an exception
 
-For future comparisions, when you are done, you can always check [TripService_Original.java][2]
+### Exercise Rules
+* Our job is to write test for the TripService class until we have 100% test coverage.
+* Once we have 100% test coverage, we need to refactor and make the code better.
+* At the end of the refactoring, both test and production code should clearly describe the business rules
 
-[1]: http://codurance.com/2011/07/16/testing-legacy-hard-wired-dependencies/ "Testing legacy code: Hard-wired dependencies blog post"
-[2]: https://github.com/sandromancuso/trip-service-kata/blob/master/java/trip-service-kata/src/main/java/org/craftedsw/tripservicekata/TripService_Original.java "TripService_Original.java"
-[3]: https://github.com/sandromancuso/trip-service-kata/blob/master/java/trip-service-kata/src/test/java/org/craftedsw/tripservicekata/TripServiceTest.java "TripServiceTest.java"
-[4]: https://github.com/sandromancuso/trip-service-kata/blob/master/java/trip-service-kata/src/main/java/org/craftedsw/tripservicekata/trip/TripService.java "TripService.java"
+### Exercise Constraints
+* We cannot manually change production code if not covered by test.
+* We CANNOT change the public interface of TripService, that means:
+  * We cannot change its constructor
+  * We cannot change the method signature
+  * Both changes above might cause other classes to change, which is not desirable now.
+* We CANNOT introduce state in the TripService:
+  * TripService is stateless. Introducing state may cause multi-thread issues.
